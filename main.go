@@ -16,7 +16,9 @@ func main() {
 
 	githubInfo := client.Github{
 		AccessToken: "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",
-		Lang:        lang.English,
+		I18n: &lang.Translation{
+			Language: lang.Chinese,
+		},
 	}
 
 	newClient, err := githubInfo.NewClient()

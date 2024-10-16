@@ -11,7 +11,7 @@ import (
 // NewClient 初始化一个客户端可以进行配置
 func (g Github) NewClient() (*Github, error) {
 	if govalidator.IsNull(g.AccessToken) {
-		return nil, fmt.Errorf(g.I18n("AccessToken不能为空"))
+		return nil, fmt.Errorf(g.I18n.Translate("AccessToken不能为空"))
 	}
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{
@@ -20,5 +20,6 @@ func (g Github) NewClient() (*Github, error) {
 	tc := oauth2.NewClient(context.Background(), ts)
 	return &Github{
 		Client: github.NewClient(tc),
+		I18n:   g.I18n,
 	}, nil
 }
