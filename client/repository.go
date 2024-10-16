@@ -2,7 +2,9 @@ package client
 
 import (
 	"context"
+	"fmt"
 	"github.com/google/go-github/v45/github"
+	"github.com/summer-gonner/github-api-go/http"
 )
 
 type GithubRepository struct {
@@ -13,9 +15,13 @@ type GithubRepository struct {
 
 // GetRepositoryList 获取仓库列表
 func (g Github) GetRepositoryList(owner string) ([]*github.Repository, error) {
-	repositories, _, err := g.Client.Repositories.List(context.Background(), owner, nil)
-	if err != nil {
-		return nil, err
+	repositories, res, err := g.Client.Repositories.List(context.Background(), owner, nil)
+	if res.Status != http.Success || err != nil {
+		_, err := http.IoToErrorResponse(res.Body)
+		if err != nil {
+			return nil, err
+		}
+		return nil, fmt.Errorf(g.I18n.Translate("仓库列表为空!"))
 	}
 	return repositories, nil
 }

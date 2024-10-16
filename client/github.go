@@ -10,4 +10,5 @@ type Github struct {
 	Owner       string
 	Client      *github.Client
 	I18n        *lang.Translation
+	User
 }

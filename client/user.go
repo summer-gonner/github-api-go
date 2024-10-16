@@ -9,9 +9,9 @@ import (
 
 // GetUser 获取某个用户信息
 func (g Github) GetUser(owner string) (*github.User, error) {
-	user, response, err := g.Client.Users.Get(context.Background(), owner)
-	if response.Status != http.Success || err != nil {
-		_, err := http.IoToErrorResponse(response.Body)
+	user, res, err := g.Client.Users.Get(context.Background(), owner)
+	if res.Status != http.Success || err != nil {
+		_, err := http.IoToErrorResponse(res.Body)
 		if err != nil {
 			return nil, err
 		}

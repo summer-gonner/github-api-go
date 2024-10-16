@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	owner      = "牛逼plus"
+	owner      = "summer-gonner"
 	repoName   = "k8s"
 	branchName = "main"
 )
@@ -17,7 +17,7 @@ func main() {
 	githubInfo := client.Github{
 		AccessToken: "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",
 		I18n: &lang.Translation{
-			Language: lang.Chinese,
+			Language: lang.English,
 		},
 	}
 
@@ -26,12 +26,13 @@ func main() {
 		log.Println("NewClient", err)
 		return
 	}
-	user, err := newClient.GetUser(owner)
-	if err != nil {
-		log.Println("获取用户失败：", err)
-		return
-	}
-	log.Printf("获取用户：%s", user)
+	//repositoryList, err := newClient.GetRepositoryList(owner)
+	//if err != nil {
+	//	log.Println("err：", err)
+	//	return
+	//}
+	//log.Printf("获取仓库：%s", repositoryList)
+	newClient.Cre
 
 	//ref, err := newClient.GetGitRef(owner, repoName, branchName)
 	//if err != nil {
