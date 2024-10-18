@@ -1,4 +1,4 @@
-module github.com/summer-gonner/github-api-go
+module github.com/summer-gonner/github
 
 go 1.22.0
 
